@@ -1,12 +1,12 @@
 ﻿using System;
 namespace Kommunikationskoordinator
 {
-    class Mobilephone
+    public class Mobilephone
     {
-        string? PhoneNumber { get; set; }
-        string PhoneState;
-        string ConnectionState;
-        string OS;
+        public string? PhoneNumber { get; set; }
+        public string PhoneState { get; set; }
+        public string ConnectionState { get; set; }
+        public string OS { get; set; }
 
         public Mobilephone()
         {
@@ -27,7 +27,8 @@ namespace Kommunikationskoordinator
             if (ConnectionState == "online")
             {
                 System.Console.WriteLine("{0} wird angerufen.", number);
-            } else
+            }
+            else
             {
                 System.Console.WriteLine("Verbindung unterbrochen. Es kann kein Sprachanruf durchgeführt werden.");
             }
@@ -42,18 +43,19 @@ namespace Kommunikationskoordinator
         }
         void sendAMessage(/*string number, string text*/ Smartphone phone, string text)
         {
-            if(phone.ConnectionState == "online" && phone.OS == OS_A && ConnectionState == "online" )
+            if (phone.ConnectionState == "online" && phone.OS == "OS_A" && ConnectionState == "online")
             {
-                Console.WriteLine("Nachricht wird an {0} gesendet.", phone.number);
-            }else
+                Console.WriteLine("Nachricht wird an {0} gesendet.", phone.PhoneNumber);
+            }
+            else
             {
-                Console.WriteLine("Die Nachricht kann nicht gesendet werden.\nMögliche Ursachen\n-unterbrochene Verbindung\n-Empfänger ist nicht online\n-Empfänger hat falsches Betriebssystem");
+                Console.WriteLine("Die Nachricht kann nicht gesendet werden.\nMögliche Ursachen\n-unterbrochene Verbindung\n-Empfänger ist nicht online\nEmpfänger hat falsches Betriebssystem");
             }
 
         }
         void receiveAMessage(string incomingNumber, string text)
         {
-            if(ConnectionState == "online" && PhoneState == "normal" && OS == OS_A)
+            if (ConnectionState == "online" && PhoneState == "normal" && OS == "OS_A")
             {
                 Console.WriteLine("Neue Nachricht von {0}\n{1}", incomingNumber, text);
             }
@@ -64,14 +66,14 @@ namespace Kommunikationskoordinator
         string? Position { get; set; }
         void ringAnAlarm()
         {
-            if(OS == "OS_B")
+            if (OS == "OS_B")
             {
                 System.Console.WriteLine("ALarm! Alarm!");
             }
         }
-        public Smartphone(string phone_number, string connection_state, string phone_state, string OS, string position) :base(phone_number, connection_state, phone_state, OS)
+        public Smartphone(string phone_number, string connection_state, string phone_state, string OS, string position) : base(phone_number, connection_state, phone_state, OS)
         {
-            this.phoneNumber = phone_number;
+            this.PhoneNumber = phone_number;
             this.ConnectionState = connection_state;
             this.PhoneState = phone_state;
             this.OS = OS;
