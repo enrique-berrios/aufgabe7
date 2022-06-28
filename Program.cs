@@ -22,7 +22,7 @@ namespace Kommunikationskoordinator
             this.ConnectionState = connection_state;
             this.OS = OS;
         }
-        void makeACall(string number)
+        public void makeACall(string number)
         {
             if (ConnectionState == "online")
             {
@@ -33,7 +33,7 @@ namespace Kommunikationskoordinator
                 System.Console.WriteLine("Verbindung unterbrochen. Es kann kein Sprachanruf durchgeführt werden.");
             }
         }
-        void receiveACall(string incomingNumber)
+        public void receiveACall(string incomingNumber)
         {
             if (ConnectionState == "online" && PhoneState == "normal")
             {
@@ -41,7 +41,7 @@ namespace Kommunikationskoordinator
             }
 
         }
-        void sendAMessage(/*string number, string text*/ Smartphone phone, string text)
+        public void sendAMessage(/*string number, string text*/ Mobilephone phone, string text)
         {
             if (phone.ConnectionState == "online" && phone.OS == "OS_A" && ConnectionState == "online")
             {
@@ -53,7 +53,7 @@ namespace Kommunikationskoordinator
             }
 
         }
-        void receiveAMessage(string incomingNumber, string text)
+        public void receiveAMessage(string incomingNumber, string text)
         {
             if (ConnectionState == "online" && PhoneState == "normal" && OS == "OS_A")
             {
@@ -64,11 +64,19 @@ namespace Kommunikationskoordinator
     class Smartphone : Mobilephone
     {
         string? Position { get; set; }
-        void ringAnAlarm()
+        public void ringAnAlarm()
         {
             if (OS == "OS_B")
             {
                 System.Console.WriteLine("ALarm! Alarm!");
+            }
+        }
+
+        public void printPosition()
+        {
+            if(Position != null)
+            {
+                Console.WriteLine("Sie befinden sich an dieser Position: {0}", Position);
             }
         }
         public Smartphone(string phone_number, string connection_state, string phone_state, string OS, string position) : base(phone_number, connection_state, phone_state, OS)
