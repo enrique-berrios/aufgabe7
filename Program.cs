@@ -63,8 +63,8 @@
     }
     class Smartphone : Mobilephone
     {
-        public string ?positionLatitude {get; set;}
-        public string ?positionLongitude {get; set;}
+        public string positionLatitude {get; set;}
+        public string positionLongitude {get; set;}
         public Smartphone()
         {
 
