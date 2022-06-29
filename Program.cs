@@ -1,9 +1,12 @@
-﻿namespace Kommunikationskoordinator
+﻿using System.Text;
+
+namespace Kommunikationskoordinator
 {
-    class Test : Smartphone
+    class Test
     {
         public int ?TestNummer;
         public string ?TestName;
+        public string firstNumber;
         public string ?ReceiverPhoneNumber;
         public Test()
         {
@@ -15,27 +18,36 @@
 
             TestNummer = Convert.ToInt16(csvEntries[0]);
             TestName = csvEntries[1];
-            PhoneNumber = csvEntries[2];
+            firstNumber = csvEntries[2];
             ReceiverPhoneNumber = csvEntries[3];
         }
-        public void askTest()
+        public void askTest(Smartphone smartphone)
         {
             if (TestName == "Alarm")
             {
-                ringAnAlarm();
+                //if (PhoneNumber == smartphone.PhoneNumber)
+                {
+                    smartphone.ringAnAlarm();
+                } 
             }
             if (TestName == "Anruf")
             {
-                makeACall(ReceiverPhoneNumber);
+            //    if (PhoneNumber == smartphone.PhoneNumber)
+               {
+                    smartphone.makeACall(ReceiverPhoneNumber);
+               }
             }
             if (TestName == "Position")
             {
-                printPosition();
+                // if (PhoneNumber == smartphone.PhoneNumber)
+                {
+                    smartphone.printPosition();
+                }
             }
         }
         public override string ToString()
         {
-            return TestNummer + " " + TestName + " " + PhoneNumber + " " + ReceiverPhoneNumber;
+            return TestNummer + " " + TestName + " " + firstNumber + " " + ReceiverPhoneNumber;
         }
     }
     public class Mobilephone
@@ -133,6 +145,11 @@
                 Console.WriteLine("Sie befinden sich an dieser Position: {0}, {1}", positionLatitude, positionLongitude);
             }
         }
+        public override string ToString()
+        {
+            return "Handydaten:\nHandynummer: " + PhoneNumber + "\nBetriebssystem: " + OS + "\nKlingelton: " + PhoneState
+            + "\nVerbindungsstatus: " + ConnectionState + "\nPosition: " + positionLatitude + " | " + positionLongitude + "\n";
+        }
     }
     class Kommunikationskoordinator
     {
@@ -153,6 +170,12 @@
                 // Daten des 1- bzw. 2-ten Index übergeben (0-ter Eintrag ist Tabellenkopf - keine Daten)
                 smartphones.Add(new Smartphone(smartphoneAsCsvString[1]));
                 smartphones.Add(new Smartphone(smartphoneAsCsvString[2]));
+                smartphones.Add(new Smartphone(smartphoneAsCsvString[3]));
+
+                foreach (Smartphone aSmartphone in smartphones)
+                {
+                    System.Console.WriteLine(aSmartphone.ToString());
+                }   
             }
 
             // Test-Liste erstellen
@@ -173,18 +196,17 @@
 
                 foreach (Test aTest in tests)
                 {
-                    System.Console.WriteLine(aTest.ToString());
+                    aTest.askTest(smartphones[1]);
+                    aTest.askTest(smartphones[2]);
+                    aTest.askTest(smartphones[3]);
                 }
             }
-                
-            /* // Ausgabe von Smartphone Properties
-            System.Console.WriteLine(erstesSmartphone.PhoneNumber);
-            System.Console.WriteLine(erstesSmartphone.OS);
-            System.Console.WriteLine(erstesSmartphone.PhoneState);            
-            System.Console.WriteLine(erstesSmartphone.ConnectionState);
-            System.Console.WriteLine(erstesSmartphone.positionLatitude);
-            System.Console.WriteLine(erstesSmartphone.positionLongitude);
-            */
+            // smartphones[1].makeACall("03231");
+            // smartphones[1].receiveACall("01234");
+            // smartphones[1].printPosition();
+            // smartphones[1].ringAnAlarm();
+            // smartphones[2].sendAMessage(smartphones[1], "Hallo!");
+            // smartphones[2].receiveAMessage("02123", "Hi!");
         }
     }
 }

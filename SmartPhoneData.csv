@@ -1,3 +1,4 @@
 Telefonnummer,Betriebssystem,Telefonstatus,Verbindungsstatus,Latitude, Longitude
 03231,OS_A,aus,offline,54.3,12.5
 02123,OS_B,aus,online,54.3,-12.5
+01234,OS_A,an,online,54.2,-14.5

@@ -1,5 +1,5 @@
 Nummer, Typ, Nummer1, Nummer2
 1,Anruf,03231,02123
-2,Anruf,02123,00000
-3,Alarm,02124, - 
-4,Position,02125, - 
+2,Anruf,02123,03231
+3,Alarm,02123, - 
+4,Position,03231, - 
